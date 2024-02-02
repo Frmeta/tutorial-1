@@ -10,9 +10,11 @@ import java.util.List;
 @Repository
 public class ProductRepository
 {
+    private long productIdCounter = 1;
     private List<Product> productData = new ArrayList<>();
 
     public Product create(Product product){
+        product.setProductId(String.valueOf(productIdCounter++));
         productData.add(product);
         return product;
     }
