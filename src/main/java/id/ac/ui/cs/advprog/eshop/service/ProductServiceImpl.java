@@ -26,4 +26,22 @@ public class ProductServiceImpl implements  ProductService{
         productIterator.forEachRemaining((allProduct::add));
         return allProduct;
     }
+
+//    @Override
+//    public void editProduct(String id, String name, int quantity){
+//        Product p = productRepository.findById(id).get();
+//        p.setProductName(name);
+//        p.setProductQuantity(quantity);
+//
+//        productRepository.save(p);
+//    }
+    @Override
+    public void save(Product product){
+        productRepository.save(product);
+    }
+
+    @Override
+    public Product findById(String id) {
+        return productRepository.findById(id);
+    }
 }
