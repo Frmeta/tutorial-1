@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public class ProductRepository
 {
+    // private String productId =
     private List<Product> productData = new ArrayList<>();
 
     public Product create(Product product){
@@ -20,4 +21,5 @@ public class ProductRepository
     public Iterator<Product> findAll(){
         return productData.iterator();
     }
+
 }
