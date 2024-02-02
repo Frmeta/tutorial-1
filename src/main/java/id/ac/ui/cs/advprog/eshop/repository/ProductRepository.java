@@ -24,21 +24,8 @@ public class ProductRepository
         return productData.iterator();
     }
 
-    // mencari produk dengan id tertentu
-    public Product findById(String id) {
 
-        return productData.stream()
-                .filter(product -> product.getProductId().equals(id))
-                .findFirst()
-                .get();
-    }
-
-    // delete produk berdasarkan id
-    public void deleteById(String id) {
-        productData.removeIf(product -> product.getProductId() == id);
-    }
-
-    // mengupdat produk
+    // mengupdate produk
     public void save(Product updatedProduct) {
         String id = updatedProduct.getProductId();
 

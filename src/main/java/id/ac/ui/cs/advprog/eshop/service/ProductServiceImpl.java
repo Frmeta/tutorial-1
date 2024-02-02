@@ -27,14 +27,6 @@ public class ProductServiceImpl implements  ProductService{
         return allProduct;
     }
 
-//    @Override
-//    public void editProduct(String id, String name, int quantity){
-//        Product p = productRepository.findById(id).get();
-//        p.setProductName(name);
-//        p.setProductQuantity(quantity);
-//
-//        productRepository.save(p);
-//    }
     @Override
     public void save(Product product){
         productRepository.save(product);
@@ -42,6 +34,14 @@ public class ProductServiceImpl implements  ProductService{
 
     @Override
     public Product findById(String id) {
-        return productRepository.findById(id);
+        Iterator<Product> productIterator = productRepository.findAll();
+
+        while (productIterator.hasNext()){
+            Product product = productIterator.next();
+            if (product.getProductId().equals(id)){
+                return product;
+            }
+        }
+        throw new IllegalArgumentException("Product with id " + id + " not found");
     }
 }
