@@ -10,11 +10,14 @@ import java.util.List;
 
 @Service
 public class ProductServiceImpl implements  ProductService{
+
+    private long productIdCounter = 1;
     @Autowired
     private ProductRepository productRepository;
 
     @Override
     public Product create(Product product){
+        product.setProductId(String.valueOf(productIdCounter++));
         productRepository.create(product);
         return product;
     }
@@ -34,7 +37,7 @@ public class ProductServiceImpl implements  ProductService{
 
     @Override
     public Product findById(String id) {
-        productRepository.findById(id);
+        return productRepository.findById(id);
     }
 
     @Override
