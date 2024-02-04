@@ -10,7 +10,7 @@
 <div class="container my-2">
   <h3 class="display-3">Welcome</h3>
   <h3>Product's List</h3>
-  <a th:href="@{/product/create}" class="btn btn-primary btn-sm mb-3">Create Product</a>
+  <a th:href="@{/product/create}" class="btn btn-primary btn-sm mb-3" id="create">Create Product</a>
 
   <table border="1" class="table table-striped table-responsive-md">
     <thead>
@@ -25,7 +25,7 @@
     <tbody>
     <tr th:each="product: ${products}">
       <td th:text="${product.productId}"></td>
-      <td th:text="${product.productName}"></td>
+      <td th:text="${product.productName}" class="productName"></td>
       <td th:text="${product.productQuantity}"></td>
       <td><a th:href="@{/product/edit/{id}(id=${product.productId})}" class="btn btn-info btn-sm">Edit</a></td>
       <td><a th:href="@{/product/delete/{id}(id = ${product.productId})}" class="btn btn-danger">Delete</a></td>
