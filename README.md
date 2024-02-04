@@ -12,9 +12,12 @@ Secure coding practices yang telah saya gunakan:
 
 Kesalahan yang pernah saya hadapi selama coding:
 - Ketika mengedit product, ID product diset menjadi null pada saat tombol Submit ditekan
-  Solusi: menambahkan input field baru untuk menyimpan ID di halaman editProduct yang bersifat readonly
-- Algoritma mencari product yang diletakkan di layer Service membuat test tidak bisa dijalankan.
-  Solusi: meletakkan algoritma tersebut di layer Repository.
+
+    Solusi: menambahkan input field baru untuk menyimpan ID di halaman editProduct yang bersifat readonly
+
+- Algoritma mencari product yang diletakkan di layer Service membuat test tidak bisa dijalankan. 
+
+    Solusi: meletakkan algoritma tersebut di layer Repository.
 
 Cara memperbaiki kode:
 - mempelajari open source project
