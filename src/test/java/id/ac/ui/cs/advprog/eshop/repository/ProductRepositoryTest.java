@@ -9,6 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Iterator;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
@@ -31,6 +32,7 @@ class ProductRepositoryTest {
         Iterator<Product> productIterator = productRepository.findAll();
         assertTrue(productIterator.hasNext());
         Product savedProduct = productIterator.next();
+
         assertEquals(product.getProductId(), savedProduct.getProductId());
         assertEquals(product.getProductName(),savedProduct.getProductName());
         assertEquals(product.getProductQuantity(),savedProduct.getProductQuantity());
@@ -63,4 +65,46 @@ class ProductRepositoryTest {
         assertFalse(productIterator.hasNext());
     }
 
+    @Test
+    void testEdit(){
+
+        // Make new product
+        Product product = new Product();
+        product.setProductId("abcde");
+        product.setProductName("Nanas");
+        product.setProductQuantity(10);
+        productRepository.create(product);
+
+        // Change the name & quantity of product
+        product = productRepository.findById("abcde");
+        product.setProductName("Nanas busuk");
+        product.setProductQuantity(8);
+        productRepository.save(product);
+
+        // Verify
+        product = productRepository.findById("abcde");
+        assertEquals(product.getProductId(), "abcde");
+        assertEquals(product.getProductName(), "Nanas busuk");
+        assertEquals(product.getProductQuantity(), 8);
+    }
+
+    @Test
+    void testDelete(){
+        // Make new product
+        Product product = new Product();
+        product.setProductId("abcde");
+        product.setProductName("Nanas");
+        product.setProductQuantity(10);
+        productRepository.create(product);
+
+        // Delete product
+        productRepository.deleteProductById("abcde");
+
+        // Verify
+        Iterator<Product> productIterator = productRepository.findAll();
+        while (productIterator.hasNext()){
+            assertNotEquals(productIterator.next().getProductId(), "abcde");
+        }
+
+    }
 }

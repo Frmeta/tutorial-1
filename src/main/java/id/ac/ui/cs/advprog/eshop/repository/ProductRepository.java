@@ -11,11 +11,9 @@ import java.util.Optional;
 @Repository
 public class ProductRepository
 {
-    private long productIdCounter = 1;
     private List<Product> productData = new ArrayList<>();
 
     public Product create(Product product){
-        product.setProductId(String.valueOf(productIdCounter++));
         productData.add(product);
         return product;
     }
@@ -30,6 +28,7 @@ public class ProductRepository
 
         while (productIterator.hasNext()){
             Product product = productIterator.next();
+            System.out.println(product.getProductId());
             if (product.getProductId().equals(id)){
                 return product;
             }
@@ -45,7 +44,7 @@ public class ProductRepository
         for (int i = 0; i < productData.size(); i++) {
             if (productData.get(i).getProductId().equals(id)) {
                 productData.set(i, updatedProduct);
-                return ;
+                return;
             }
         }
         throw new IllegalArgumentException("Product with id " + id + " not found");
@@ -59,7 +58,7 @@ public class ProductRepository
             Product product = productIterator.next();
             if (product.getProductId().equals(id)){
                 productIterator.remove();
-                break;
+                return;
             }
         }
 
