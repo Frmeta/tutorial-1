@@ -34,28 +34,12 @@ public class ProductServiceImpl implements  ProductService{
 
     @Override
     public Product findById(String id) {
-        Iterator<Product> productIterator = productRepository.findAll();
-
-        while (productIterator.hasNext()){
-            Product product = productIterator.next();
-            if (product.getProductId().equals(id)){
-                return product;
-            }
-        }
-        throw new IllegalArgumentException("Product with id " + id + " not found");
+        productRepository.findById(id);
     }
 
     @Override
     public void deleteProductById(String id){
-        Iterator<Product> productIterator = productRepository.findAll();
-
-        while (productIterator.hasNext()){
-            Product product = productIterator.next();
-            if (product.getProductId().equals(id)){
-                productIterator.remove();
-                break;
-            }
-        }
+        productRepository.deleteProductById(id);
     }
 
 }
