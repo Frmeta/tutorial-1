@@ -25,6 +25,19 @@ public class ProductRepository
     }
 
 
+    public Product findById(String id) {
+        Iterator<Product> productIterator = findAll();
+
+        while (productIterator.hasNext()){
+            Product product = productIterator.next();
+            if (product.getProductId().equals(id)){
+                return product;
+            }
+        }
+        throw new IllegalArgumentException("Product with id " + id + " not found");
+    }
+
+
     // mengupdate produk
     public void save(Product updatedProduct) {
         String id = updatedProduct.getProductId();
@@ -38,4 +51,18 @@ public class ProductRepository
         throw new IllegalArgumentException("Product with id " + id + " not found");
     }
 
+
+    public void deleteProductById(String id){
+        Iterator<Product> productIterator = findAll();
+
+        while (productIterator.hasNext()){
+            Product product = productIterator.next();
+            if (product.getProductId().equals(id)){
+                productIterator.remove();
+                break;
+            }
+        }
+
+        throw new IllegalArgumentException("Product with id " + id + " not found");
+    }
 }
