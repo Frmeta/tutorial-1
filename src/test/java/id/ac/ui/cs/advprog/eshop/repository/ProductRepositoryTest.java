@@ -66,7 +66,7 @@ class ProductRepositoryTest {
     }
 
     @Test
-    void testEdit(){
+    void testSuccessfulEdit(){
 
         // Make new product
         Product product = new Product();
@@ -87,15 +87,36 @@ class ProductRepositoryTest {
         assertEquals(product.getProductName(), "Nanas busuk");
         assertEquals(product.getProductQuantity(), 8);
     }
-
     @Test
-    void testDelete(){
+    void testFailedEdit(){
+
         // Make new product
         Product product = new Product();
         product.setProductId("abcde");
         product.setProductName("Nanas");
         product.setProductQuantity(10);
         productRepository.create(product);
+
+        assertThrows(IllegalArgumentException.class, () -> productRepository.findById("random id"));
+
+        // Change the name & quantity of product
+        product = productRepository.findById("abcde");
+        product.setProductName("Nanas busuk");
+        product.setProductQuantity(8);
+        productRepository.save(product);
+
+        assertThrows(IllegalArgumentException.class, () -> productRepository.findById("randomId"));
+    }
+
+    @Test
+    void testSuccessfulDelete(){
+        // Make new product
+        Product product = new Product();
+        product.setProductId("abcde");
+        product.setProductName("Nanas");
+        product.setProductQuantity(10);
+        productRepository.create(product);
+
 
         // Delete product
         productRepository.deleteProductById("abcde");
@@ -105,6 +126,23 @@ class ProductRepositoryTest {
         while (productIterator.hasNext()){
             assertNotEquals(productIterator.next().getProductId(), "abcde");
         }
+    }
+    @Test
+    void testFailedDelete(){
+        // Make new product
+        Product product = new Product();
+        product.setProductId("abcde");
+        product.setProductName("Nanas");
+        product.setProductQuantity(10);
+        productRepository.create(product);
 
+
+        // Delete product with unknown id
+        assertThrows(IllegalArgumentException.class, () -> productRepository.deleteProductById("randomId"));
+
+        // Make sure the product still there
+        boolean stillThere = false;
+        String id = productRepository.findAll().next().getProductId();
+        assertEquals(id, "abcde");
     }
 }
