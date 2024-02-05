@@ -17,7 +17,7 @@ public class ProductController {
 
     @GetMapping
     public String index(){
-        return "redirect:product/list";
+        return "home";
     }
 
     @GetMapping("/product/create")

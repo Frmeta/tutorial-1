@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Product List</title>
+  <title>ADV Shop</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
@@ -18,42 +18,26 @@
       </div>
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="/" class="nav-link px-2 text-white">Home</a></li>
-        <li><a href="/product/list" class="nav-link px-2 text-secondary">Product</a></li>
+        <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
+        <li><a href="/product/list" class="nav-link px-2 text-white" id="product">Product</a></li>
       </ul>
 
 
     </div>
   </div>
 </header>
-<div class="container my-2">
-  <div class="d-flex justify-content-center pt-4"><h3>Product's List</h3></div>
 
-  <div class="d-flex justify-content-center pt-4">
-    <a th:href="@{/product/create}" class="btn btn-primary btn-sm mb-3" id="create">Create Product</a>
+<section class="jumbotron text-center">
+  <div class="container">
+    <h3 class="display-3">Welcome</h3>
+    <h2 class="jumbotron-heading">to ADV SHOP</h2>
+    <p class="lead text-muted">Dibuat sebagai tugas modul 1 mata kuliah Pemrograman Lanjut Universitas Indonesia. Dibuat oleh Fredo Melvern Tanzil 2206024713.</p>
+    <p>
+      <a href="/product/list" class="btn btn-primary my-2">Explore our products</a>
+    </p>
   </div>
+</section>
 
-  <table border="1" class="table table-striped table-responsive-md">
-    <thead>
-    <tr>
-      <th scope="col">Product ID</th>
-      <th scope="col">Product Name</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Edit</th>
-      <th scope="col">Delete</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="product: ${products}">
-      <td th:text="${product.productId}"></td>
-      <td th:text="${product.productName}" class="productName"></td>
-      <td th:text="${product.productQuantity}"></td>
-      <td><a th:href="@{/product/edit/{id}(id=${product.productId})}" class="btn btn-info btn-sm">Edit</a></td>
-      <td><a th:href="@{/product/delete/{id}(id = ${product.productId})}" class="btn btn-danger">Delete</a></td>
-    </tr>
-    </tbody>
-  </table>
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

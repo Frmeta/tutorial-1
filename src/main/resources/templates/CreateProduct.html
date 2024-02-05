@@ -7,8 +7,29 @@
 </head>
 <body>
 
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <div class="px-4 d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-stack" viewBox="0 0 16 16">
+                    <path d="m14.12 10.163 1.715.858c.22.11.22.424 0 .534L8.267 15.34a.6.6 0 0 1-.534 0L.165 11.555a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.66zM7.733.063a.6.6 0 0 1 .534 0l7.568 3.784a.3.3 0 0 1 0 .535L8.267 8.165a.6.6 0 0 1-.534 0L.165 4.382a.299.299 0 0 1 0-.535z"/>
+                    <path d="m14.12 6.576 1.715.858c.22.11.22.424 0 .534l-7.568 3.784a.6.6 0 0 1-.534 0L.165 7.968a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0z"/>
+                </svg>
+                <h2 class="px-2 text-decoration-none">ADV Shop</h2>
+            </div>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/" class="nav-link px-2 text-white">Home</a></li>
+                <li><a href="/product/list" class="nav-link px-2 text-secondary">Product</a></li>
+            </ul>
+
+
+        </div>
+    </div>
+</header>
+
 <div class="container">
-    <h3>Create New Product</h3>
+    <div class="d-flex justify-content-center pt-4"><h3>Create New Product</h3></div>
 
     <form th:action="@{/product/create}" th:object="${product}" method="post">
         <div class="form-group">
