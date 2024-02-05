@@ -31,8 +31,12 @@ class CreateProductFunctionalTest {
     void createProduct_isCorrect (ChromeDriver driver) throws Exception {
         driver.get(baseUrl);
 
+        // Klik tombol product
+        WebElement checkInput = driver.findElement(By.id("product"));
+        checkInput.click();
+
         // Klik tombol create
-        WebElement checkInput = driver.findElement(By.id("create"));
+        checkInput = driver.findElement(By.id("create"));
         checkInput.click();
 
         // isi nama produk
