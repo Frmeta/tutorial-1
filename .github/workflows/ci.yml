@@ -1,4 +1,4 @@
-name: Fredo Continuous Integration (CI)
+name: Continuous Integration (CI)
 
 on:
   push:
