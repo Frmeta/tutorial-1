@@ -87,6 +87,7 @@ class ProductRepositoryTest {
         assertEquals(product.getProductName(), "Nanas busuk");
         assertEquals(product.getProductQuantity(), 8);
     }
+
     @Test
     void testFailedEdit(){
 
@@ -99,13 +100,22 @@ class ProductRepositoryTest {
 
         assertThrows(IllegalArgumentException.class, () -> productRepository.findById("random id"));
 
+        assertDoesNotThrow(() -> productRepository.findById("abcde"));
+
         // Change the name & quantity of product
         product = productRepository.findById("abcde");
         product.setProductName("Nanas busuk");
         product.setProductQuantity(8);
         productRepository.save(product);
 
-        assertThrows(IllegalArgumentException.class, () -> productRepository.findById("randomId"));
+        // Make product that is not saved
+        product = new Product();
+        product.setProductId("x");
+        product.setProductName("x");
+        product.setProductQuantity(1);
+
+        Product finalProduct = product;
+        assertThrows(IllegalArgumentException.class, () -> productRepository.save(finalProduct));
     }
 
     @Test
