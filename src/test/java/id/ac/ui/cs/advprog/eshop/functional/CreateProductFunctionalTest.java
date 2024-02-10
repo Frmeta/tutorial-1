@@ -55,7 +55,7 @@ class CreateProductFunctionalTest {
 
         // Cek apakah berhasil tersimpan
         WebElement firstProduct = driver.findElement(By.className("productName"));
-        assertEquals(firstProduct.getText(), "Laptop");
+        assertEquals(firstProduct.getText(), "Laptop", "Check if the product is saved");
     }
 
 }

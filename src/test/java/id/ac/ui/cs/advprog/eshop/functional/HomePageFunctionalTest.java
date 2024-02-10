@@ -40,7 +40,7 @@ class HomePageFunctionalTest {
         driver.get(baseUrl);
         String pageTitle = driver.getTitle();
         // Verify
-        assertEquals("ADV Shop", pageTitle);
+        assertEquals("ADV Shop", pageTitle, "Verify title");
     }
 
     @Test

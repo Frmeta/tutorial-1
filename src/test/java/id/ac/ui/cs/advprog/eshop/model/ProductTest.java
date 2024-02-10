@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-private class ProductTest {
+class ProductTest {
     Product product;
     @BeforeEach
     void setUp(){
