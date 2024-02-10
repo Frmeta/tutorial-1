@@ -28,7 +28,7 @@ class CreateProductFunctionalTest {
         baseUrl = String.format("%s:%d", testBaseUrl, serverPort);
     }
     @Test
-    void createProduct_isCorrect (ChromeDriver driver) throws Exception {
+    void createProductIsCorrect (ChromeDriver driver) throws Exception {
         driver.get(baseUrl);
 
         // Klik tombol product
