@@ -3,7 +3,7 @@ FROM docker.io/library/eclipse-temurin:21-jdk-alpine
 
 WORKDIR /src/advshop
 COPY . .
-RUN ./gradlew clean boot Jar
+RUN ./gradlew clean bootJar
 
 FROM docker.io/library/eclipse-temurin:21-jre-alpine
 
