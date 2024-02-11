@@ -149,7 +149,6 @@ class ProductRepositoryTest {
         assertThrows(IllegalArgumentException.class, () -> productRepository.deleteProductById("randomId"));
 
         // Make sure the product still there
-        boolean stillThere = false;
         String id = productRepository.findAll().next().getProductId();
         assertEquals(id, "abcde");
     }
