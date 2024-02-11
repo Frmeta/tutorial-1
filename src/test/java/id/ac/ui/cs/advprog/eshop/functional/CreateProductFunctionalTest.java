@@ -28,7 +28,7 @@ class CreateProductFunctionalTest {
         baseUrl = String.format("%s:%d", testBaseUrl, serverPort);
     }
     @Test
-    void createProduct_isCorrect (ChromeDriver driver) throws Exception {
+    void createProductIsCorrect (ChromeDriver driver) throws Exception {
         driver.get(baseUrl);
 
         // Klik tombol product
@@ -55,7 +55,7 @@ class CreateProductFunctionalTest {
 
         // Cek apakah berhasil tersimpan
         WebElement firstProduct = driver.findElement(By.className("productName"));
-        assertEquals(firstProduct.getText(), "Laptop");
+        assertEquals(firstProduct.getText(), "Laptop", "Check if the product is saved");
     }
 
 }

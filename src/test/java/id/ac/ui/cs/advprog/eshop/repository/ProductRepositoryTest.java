@@ -6,10 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Iterator;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
@@ -87,6 +85,7 @@ class ProductRepositoryTest {
         assertEquals(product.getProductName(), "Nanas busuk");
         assertEquals(product.getProductQuantity(), 8);
     }
+
     @Test
     void testFailedEdit(){
 
@@ -99,13 +98,22 @@ class ProductRepositoryTest {
 
         assertThrows(IllegalArgumentException.class, () -> productRepository.findById("random id"));
 
+        assertDoesNotThrow(() -> productRepository.findById("abcde"));
+
         // Change the name & quantity of product
         product = productRepository.findById("abcde");
         product.setProductName("Nanas busuk");
         product.setProductQuantity(8);
         productRepository.save(product);
 
-        assertThrows(IllegalArgumentException.class, () -> productRepository.findById("randomId"));
+        // Make product that is not saved
+        product = new Product();
+        product.setProductId("x");
+        product.setProductName("x");
+        product.setProductQuantity(1);
+
+        Product finalProduct = product;
+        assertThrows(IllegalArgumentException.class, () -> productRepository.save(finalProduct));
     }
 
     @Test
@@ -141,7 +149,6 @@ class ProductRepositoryTest {
         assertThrows(IllegalArgumentException.class, () -> productRepository.deleteProductById("randomId"));
 
         // Make sure the product still there
-        boolean stillThere = false;
         String id = productRepository.findAll().next().getProductId();
         assertEquals(id, "abcde");
     }

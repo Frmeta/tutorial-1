@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class ProductRepository
@@ -28,7 +27,6 @@ public class ProductRepository
 
         while (productIterator.hasNext()){
             Product product = productIterator.next();
-            System.out.println(product.getProductId());
             if (product.getProductId().equals(id)){
                 return product;
             }
