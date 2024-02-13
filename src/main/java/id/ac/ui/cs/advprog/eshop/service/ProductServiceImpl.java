@@ -31,8 +31,9 @@ public class ProductServiceImpl implements  ProductService{
     }
 
     @Override
-    public void save(Product product){
+    public Product save(Product product){
         productRepository.save(product);
+        return product;
     }
 
     @Override
@@ -41,8 +42,8 @@ public class ProductServiceImpl implements  ProductService{
     }
 
     @Override
-    public void deleteProductById(String id){
-        productRepository.deleteProductById(id);
+    public boolean deleteProductById(String id){
+        return productRepository.deleteProductById(id);
     }
 
 }

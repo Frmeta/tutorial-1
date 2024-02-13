@@ -36,27 +36,27 @@ public class ProductRepository
 
 
     // mengupdate produk
-    public void save(Product updatedProduct) {
+    public Product save(Product updatedProduct) {
         String id = updatedProduct.getProductId();
 
         for (int i = 0; i < productData.size(); i++) {
             if (productData.get(i).getProductId().equals(id)) {
                 productData.set(i, updatedProduct);
-                return;
+                return updatedProduct;
             }
         }
         throw new IllegalArgumentException("Product with id " + id + " not found");
     }
 
 
-    public void deleteProductById(String id){
+    public boolean deleteProductById(String id){
         Iterator<Product> productIterator = findAll();
 
         while (productIterator.hasNext()){
             Product product = productIterator.next();
             if (product.getProductId().equals(id)){
                 productIterator.remove();
-                return;
+                return true;
             }
         }
 

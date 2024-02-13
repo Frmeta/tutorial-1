@@ -18,6 +18,8 @@ class ProductServiceTest {
 
     @Test
     void testCreateProduct() {
+
+        // Create 5 new product
         for (int i = 0; i < 5;i++){
             Product product = new Product();
             product.setProductName(String.valueOf(i+10));
@@ -27,8 +29,8 @@ class ProductServiceTest {
             service.create(product);
         }
 
+        // Check if its there
         List<Product> productList = service.findAll();
-
         for (int i = 0; i < 5;i++){
             Product product = productList.get(i);
 
@@ -37,46 +39,59 @@ class ProductServiceTest {
             assertEquals(product.getProductQuantity(), i+20);
         }
     }
-//
-//    @Test
-//    void testSaveProduct(){
-//        for (int i = 0; i < 5;i++){
-//            Product product = new Product();
-//            product.setProductId("XXX");
-//            product.setProductName("XXX");
-//            product.setProductQuantity(1);
-//        }
-//    }
 
-//    @Test
-//    void testCreateOrSaveEmployee() {
-//        Employee employee = new Employee("Lokesh", "Gupta");
-//
-//        service.save(employee);
-//
-//        verify(dao, times(1)).save(employee);
-//    }
+    @Test
+    void testFindProduct(){
 
+        // Create new product
+        Product product = new Product();
+        product.setProductName("Ipad");
+        product.setProductQuantity(12);
+        service.create(product);
 
-//    @Test
-//    void testFindAllEmployees() {
-//        List<Employee> list = new ArrayList<Employee>();
-//        Employee empOne = new Employee("John", "John");
-//        Employee empTwo = new Employee("Alex", "kolenchiski");
-//        Employee empThree = new Employee("Steve", "Waugh");
-//
-//        list.add(empOne);
-//        list.add(empTwo);
-//        list.add(empThree);
-//
-//        when(repo.findAll()).thenReturn(list);
-//
-//        //test
-//        List<Employee> empList = service.findAll();
-//
-//        assertEquals(3, empList.size());
-//        verify(dao, times(1)).findAll();
-//    }
+        // Find the product
+        Product foundProduct =  service.findById("1");
+        assertEquals(foundProduct.getProductName(), "Ipad");
+
+    }
+
+    @Test
+    void testSaveProduct(){
+
+        // Create new product
+        Product product = new Product();
+        product.setProductName("Ipad");
+        product.setProductQuantity(12);
+        service.create(product);
+
+        // Update product name & quantity
+        product.setProductName("Laptop");
+        product.setProductQuantity(15);
+        service.save(product);
+
+        // Check
+        Product foundProduct =  service.findById("1");
+        assertEquals(foundProduct.getProductName(), "Laptop");
+        assertEquals(foundProduct.getProductQuantity(), 15);
+
+    }
+
+    @Test
+    void testDeleteProduct(){
+
+        // Create new product
+        Product product = new Product();
+        product.setProductName("Ipad");
+        product.setProductQuantity(12);
+        service.create(product);
+
+        // Delete product
+        service.deleteProductById(product.getProductId());
+
+        // Check
+        assertThrows(IllegalArgumentException.class, () -> service.findById("1"));
+
+    }
 
 
 
