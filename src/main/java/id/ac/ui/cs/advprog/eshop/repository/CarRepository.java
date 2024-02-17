@@ -14,7 +14,7 @@ public class CarRepository {
     public Car create(Car car){
         if (car.getCarId() == null){
             UUID uuid = UUID.randomUUID();
-            car.setCarId(uuid.toString())
+            car.setCarId(uuid.toString());
         }
         carData.add(car);
         return car;
