@@ -1,7 +1,10 @@
 package id.ac.ui.cs.advprog.eshop.controller;
 
+import id.ac.ui.cs.advprog.eshop.model.Car;
 import id.ac.ui.cs.advprog.eshop.model.Product;
+import id.ac.ui.cs.advprog.eshop.service.CarServiceImpl;
 import id.ac.ui.cs.advprog.eshop.service.ProductService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +12,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @Controller
+@RequestMapping
 public class ProductController {
 
     @Autowired
@@ -19,6 +24,7 @@ public class ProductController {
     public String index(){
         return "home";
     }
+
 
     @GetMapping("/product/create")
     public String createProductPage(Model model){
@@ -54,6 +60,7 @@ public class ProductController {
         service.save(product);
         return "redirect:list";
     }
+
     @GetMapping("/product/delete/{id}")
     public String deleteProduct(@PathVariable String id, Model model){
         service.deleteProductById(id);
@@ -61,3 +68,4 @@ public class ProductController {
     }
 
 }
+

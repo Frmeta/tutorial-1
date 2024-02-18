@@ -73,7 +73,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testHhomePage() throws Exception{
+    public void testHomePage() throws Exception{
         mvc.perform(get(""))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("ADV Shop")));
