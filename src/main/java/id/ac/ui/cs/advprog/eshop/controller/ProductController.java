@@ -14,7 +14,6 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping
 public class ProductController {
 
     @Autowired

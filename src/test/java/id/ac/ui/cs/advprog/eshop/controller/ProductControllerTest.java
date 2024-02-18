@@ -1,6 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.controller;
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import id.ac.ui.cs.advprog.eshop.controller.ProductController;
+import id.ac.ui.cs.advprog.eshop.service.CarServiceImpl;
 import id.ac.ui.cs.advprog.eshop.service.ProductServiceImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,6 +30,8 @@ public class ProductControllerTest {
     private MockMvc mvc;
     @MockBean
     private ProductServiceImpl service;
+    @MockBean
+    private CarServiceImpl carService;
     @InjectMocks
     private ProductController controller;
     private List<Product> allProducts;
