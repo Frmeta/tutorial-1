@@ -63,3 +63,38 @@ Cara memperbaiki kode:
 2. Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment? Explain the reasons (minimum 3 sentences)!
 
     - Continuous Integration terdiri dari fase Code dan Test. Sedangkan Continuous Delivery/Deployment terdiri dari fase Review dan Operational. Menurut saya implementasi sekarang sudah menerapkan CI/CD tersebut. Sebab kode dalam `ci.yml` sudah dapat melakukan proses test secara otomatis ketika kita melakukan push atau pull request ke repository Github tersebut. Selain itu penggunaan `Koyeb` sudah menerapkan Continuous Deployment karena web app akan otomatis terdeploy seketika ada push/pull request pada repository Github tersebut.
+
+
+## Module 3
+SOLID Principles:
+1. SRP (Single Responsibility Principle)
+   
+   SRP adalah aturan dimana memisahkan file berdasarnkan tanggung jawabnya. Kode saya sudah menerapkan SRP, dimana CarController dan ProductController (yang awalnya digabung di satu file) dipisah menjadi dua file berbeda agar tiap tanggung jawab dienkapsulasi ke dalam satu file. Selain itu saya juga menambahkan HomeController, yakni controller untuk mengatur home page, di file yang berbeda
+
+2. OCP (Open-Closed Principle)
+   
+   
+   OCP adalah aturan dimana apapun komponen pada kode kita harus open/terbuka untuk pengembangan atau ekstensi namun closed/tertutup pada modifikasi. Kode saya sudah menerapkan prinsip ini yaitu pada bagian controller. Apabila kita ingin menambahkan mapping link yang baru, dapat membuat file controller baru tanpa mengupdate file yang lama.
+
+3. LSP (Liskov Subtitution Principle)
+   LSP adalah aturan dimana apabila suatu subclass inherit dari sebuah superclass, maka diharapkan subclass tersebut memiliki behaviour yang serupa dengan superclassnya. Kode saya sudah menerapkan LSP, contohnya CarController yang inherit dari ProductController karena kedua class tersebut memiliki mapping yang mirip dengan ProductController seperti create, list, edit, dan delete.
+
+4. ISP (Interface Segregation Principle)
+   
+   ISP adalah aturan dimana interface yang berukuran besar sebaiknya dipisah menjadi beberapa bagian kecil yang spesifik. Kode saya sudah menerapkan ISP pada bagian CarServiceImpl dan ProductServiceImpl dimana kedua interface tersebut tidak digabung karena mereka memiliki behaviour yang spesifik untuk car service atau product srevice.
+
+5. DIP (Dependency Inversion Principle)
+   
+   DIP adalah aturan dimana suatu class sebaiknya memiliki ketergantungan terhadap interface atau class abstract daripada class concrete. Hal ini berguna untuk meningkatkan fleksibilitas. Kode saya sudah menerapkan prinsip ini, contohnya pada ProductController dan CarController yang menyimpan referensi service dalam bentuk interface `ProductService` dan `CarService`, dan bukan concrete classnya.
+
+
+Keuntungan menerapkan prinsip SOLID
+- Membantu kode kita menjadi mudah dipahami orang lain
+- Membuat kode kita muda dikelola (scalability) dan fleksibel
+- Meningkatkan kualitas software
+- Memudahkan mencari penyebab error atau bug
+
+Kerugian tidak menerapkan prinsip SOLID
+- Kode hanya dipahami oleh orang yang menulis kode, orang lain yang membaca kode lebih banyak menghabiskan waktunya dalam memahami kode lama dibanding membuat kode baru
+- Kode sulit dikelola, sulit menambah fitur, dan tidak fleksibel
+- Apabila menemukan error atau bug akan sulit melacak kode penyebabnya

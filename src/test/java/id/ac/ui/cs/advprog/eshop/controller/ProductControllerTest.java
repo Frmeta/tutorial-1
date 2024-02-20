@@ -76,12 +76,6 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testHomePage() throws Exception{
-        mvc.perform(get(""))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("ADV Shop")));
-    }
-    @Test
     public void testListPage() throws Exception{
         mvc.perform(get("/product/list"))
                 .andExpect(status().isOk())
