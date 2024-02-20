@@ -63,3 +63,10 @@ Cara memperbaiki kode:
 2. Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment? Explain the reasons (minimum 3 sentences)!
 
     - Continuous Integration terdiri dari fase Code dan Test. Sedangkan Continuous Delivery/Deployment terdiri dari fase Review dan Operational. Menurut saya implementasi sekarang sudah menerapkan CI/CD tersebut. Sebab kode dalam `ci.yml` sudah dapat melakukan proses test secara otomatis ketika kita melakukan push atau pull request ke repository Github tersebut. Selain itu penggunaan `Koyeb` sudah menerapkan Continuous Deployment karena web app akan otomatis terdeploy seketika ada push/pull request pada repository Github tersebut.
+
+
+## Module 3
+SOLID Principles:
+1. SRP (Single Responsiblity Principle)
+
+   a
