@@ -69,15 +69,15 @@ Cara memperbaiki kode:
 SOLID Principles:
 1. SRP (Single Responsibility Principle)
    
-   SRP adalah aturan dimana memisahkan file berdasarnkan tanggung jawabnya. Kode saya sudah menerapkan SRP, dimana CarController dan ProductController (yang awalnya digabung di satu file) dipisah menjadi dua file berbeda agar tiap tanggung jawab dienkapsulasi ke dalam satu file. Selain itu saya juga menambahkan HomeController, yakni controller untuk mengatur home page, di file yang berbeda
+   SRP adalah aturan dimana memisahkan file berdasarnkan tanggung jawabnya. Kode saya sudah menerapkan SRP, dimana CarController dan ProductController (yang awalnya digabung di satu file) dipisah menjadi dua file berbeda agar tiap tanggung jawab dienkapsulasi ke dalam satu file. Saya menghilangkan hubungan inheritance antara CarController dan ProductController sebab CarController tidak diharapkan mengatur mapping untuk membuat product. Selain itu saya juga menambahkan HomeController, yakni controller untuk mengatur home page, di file yang berbeda
 
 2. OCP (Open-Closed Principle)
-   
-   
+
    OCP adalah aturan dimana apapun komponen pada kode kita harus open/terbuka untuk pengembangan atau ekstensi namun closed/tertutup pada modifikasi. Kode saya sudah menerapkan prinsip ini yaitu pada bagian controller. Apabila kita ingin menambahkan mapping link yang baru, dapat membuat file controller baru tanpa mengupdate file yang lama.
 
 3. LSP (Liskov Subtitution Principle)
-   LSP adalah aturan dimana apabila suatu subclass inherit dari sebuah superclass, maka diharapkan subclass tersebut memiliki behaviour yang serupa dengan superclassnya. Kode saya sudah menerapkan LSP, contohnya CarController yang inherit dari ProductController karena kedua class tersebut memiliki mapping yang mirip dengan ProductController seperti create, list, edit, dan delete.
+   
+    LSP adalah aturan dimana apabila suatu subclass inherit dari sebuah superclass, maka diharapkan subclass tersebut memiliki behaviour yang serupa dengan superclassnya. Kode saya sudah menerapkan LSP, contohnya CarServiceImpl dan ProductServiceImpl yang telah mengimplemen interface CarService dan ProductService dengan meng-override methodnya dengan sesuai tanpa meggantikan fungsionalitas dari interface tersebut.
 
 4. ISP (Interface Segregation Principle)
    
