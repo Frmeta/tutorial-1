@@ -1,6 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
 import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -77,13 +78,15 @@ public class Payment {
         setStatus(status);
     }
     public void setStatus(String status){
-        if (status.equals("SUCCESS") || status.equals("REJECTED")){
+        if (PaymentStatus.contains(status)){
             this.status = status;
+
             if (status.equals("SUCCESS")){
                 order.setStatus("SUCCESS");
             } else if (status.equals("REJECTED")){
                 order.setStatus("FAILED");
             }
+
         } else{
             throw new IllegalArgumentException();
         }
