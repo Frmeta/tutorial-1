@@ -1,9 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.repository;
 
 
-import id.ac.ui.cs.advprog.eshop.model.Order;
-import id.ac.ui.cs.advprog.eshop.model.Payment;
-import id.ac.ui.cs.advprog.eshop.model.Product;
+import id.ac.ui.cs.advprog.eshop.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -44,13 +42,13 @@ class PaymentRepositoryTest {
 
         Map<String, String> paymentData1 = new HashMap<String, String>();
         paymentData1.put("voucherCode", "ESHOP1234ABC5678");
-        Payment payment1 = new Payment("6c93d3e2-b009-46ba-9d15-f03d85adc2de", orders.getFirst(), "VOUCHER_CODE", paymentData1);
+        Payment payment1 = new PaymentVoucherCode("6c93d3e2-b009-46ba-9d15-f03d85adc2de", orders.getFirst(), paymentData1);
         payments.add(payment1);
 
         Map<String, String> paymentData2 = new HashMap<String, String>();
         paymentData2.put("address", "Jalan Anggur");
         paymentData2.put("deliveryFee", "12000");
-        Payment payment2 = new Payment("6c93d3e2-b009-46ba-9d15-f03d85adc2d2", orders.getFirst(), "CASH_ON_DELIVERY", paymentData2);
+        Payment payment2 = new PaymentCashOnDelivery("6c93d3e2-b009-46ba-9d15-f03d85adc2d2", orders.getFirst(), paymentData2);
         payments.add(payment2);
     }
 
@@ -64,7 +62,6 @@ class PaymentRepositoryTest {
 
         assertEquals(payment.getId(), result.getId());
         assertEquals(payment.getId(), findResult.getId());
-        assertEquals(payment.getMethod(), findResult.getMethod());
         assertEquals(payment.getStatus(), findResult.getStatus());
         assertEquals(payment.getPaymentData(), findResult.getPaymentData());
         assertSame(payment.getOrder(), findResult.getOrder());
@@ -78,14 +75,13 @@ class PaymentRepositoryTest {
         paymentRepository.save(payment);
 
         // change payment data
-        Payment newPayment = new Payment(payment.getId(), payment.getOrder(), payment.getMethod(), payments.get(0).getPaymentData());
+        Payment newPayment = new PaymentCashOnDelivery(payment.getId(), payment.getOrder(), payments.get(0).getPaymentData());
         Payment result = paymentRepository.save(newPayment);
 
         Payment findResult = paymentRepository.findById(payments.get(1).getId());
 
         assertEquals(payment.getId(), result.getId());
         assertEquals(payment.getId(), findResult.getId());
-        assertEquals(payment.getMethod(), findResult.getMethod());
         assertEquals(payments.getFirst().getPaymentData(), findResult.getPaymentData());
         assertSame(payment.getOrder(), findResult.getOrder());
 
@@ -100,7 +96,6 @@ class PaymentRepositoryTest {
         Payment findResult = paymentRepository.findById(payments.get(1).getId());
 
         assertEquals(payments.get(1).getId(), findResult.getId());
-        assertEquals(payments.get(1).getMethod(), findResult.getMethod());
         assertEquals(payments.get(1).getStatus(), findResult.getStatus());
         assertEquals(payments.get(1).getPaymentData(), findResult.getPaymentData());
         assertSame(payments.get(1).getOrder(), findResult.getOrder());
