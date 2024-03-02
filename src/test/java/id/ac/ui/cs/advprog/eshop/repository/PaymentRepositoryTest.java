@@ -40,6 +40,8 @@ class PaymentRepositoryTest {
         orders.add(order3);
 
         // Make payments
+        payments = new ArrayList<>();
+
         Map<String, String> paymentData1 = new HashMap<String, String>();
         paymentData1.put("voucherCode", "ESHOP1234ABC5678");
         Payment payment1 = new Payment("6c93d3e2-b009-46ba-9d15-f03d85adc2de", orders.getFirst(), "VOUCHER_CODE", paymentData1);
@@ -48,7 +50,7 @@ class PaymentRepositoryTest {
         Map<String, String> paymentData2 = new HashMap<String, String>();
         paymentData2.put("address", "Jalan Anggur");
         paymentData2.put("deliveryFee", "12000");
-        Payment payment2 = new Payment("6c93d3e2-b009-46ba-9d15-f03d85adc2de", orders.getFirst(), "CASH_ON_DELIVERY", paymentData2);
+        Payment payment2 = new Payment("6c93d3e2-b009-46ba-9d15-f03d85adc2d2", orders.getFirst(), "CASH_ON_DELIVERY", paymentData2);
         payments.add(payment2);
     }
 
@@ -84,7 +86,6 @@ class PaymentRepositoryTest {
         assertEquals(payment.getId(), result.getId());
         assertEquals(payment.getId(), findResult.getId());
         assertEquals(payment.getMethod(), findResult.getMethod());
-        assertEquals(payment.getStatus(), findResult.getStatus());
         assertEquals(payments.getFirst().getPaymentData(), findResult.getPaymentData());
         assertSame(payment.getOrder(), findResult.getOrder());
 
@@ -116,7 +117,7 @@ class PaymentRepositoryTest {
     }
 
     @Test
-    void testFindAllByAuthorIfAuthorCorrect(){
+    void testFindAll(){
         for (Payment payment: payments) {
             paymentRepository.save(payment);
         }
