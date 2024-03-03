@@ -1,5 +1,6 @@
 package id.ac.ui.cs.advprog.eshop.service;
 
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import id.ac.ui.cs.advprog.eshop.model.Order;
 import id.ac.ui.cs.advprog.eshop.model.Payment;
 import id.ac.ui.cs.advprog.eshop.model.PaymentCashOnDelivery;
@@ -38,20 +39,9 @@ public class PaymentServiceImpl implements PaymentService{
         Payment savedPayment = paymentRepository.findById(payment.getId());
         if (savedPayment != null){
 
-            Payment newPayment;
-            if (payment instanceof PaymentVoucherCode){
-                newPayment = new PaymentVoucherCode(payment.getId(), payment.getOrder(), payment.getPaymentData());
-
-            } else if (payment instanceof PaymentCashOnDelivery){
-                newPayment = new PaymentCashOnDelivery(payment.getId(), payment.getOrder(), payment.getPaymentData());
-
-            } else{
-                // Unknown Payment type
-                throw new IllegalArgumentException();
-            }
-            newPayment.setStatus(status);
-            paymentRepository.save(newPayment);
-            return newPayment;
+            savedPayment.setStatus(status);
+            paymentRepository.save(savedPayment);
+            return savedPayment;
 
         }else{
             throw new NoSuchElementException();
