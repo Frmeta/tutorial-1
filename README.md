@@ -98,3 +98,36 @@ Kerugian tidak menerapkan prinsip SOLID
 - Kode hanya dipahami oleh orang yang menulis kode, orang lain yang membaca kode lebih banyak menghabiskan waktunya dalam memahami kode lama dibanding membuat kode baru
 - Kode sulit dikelola, sulit menambah fitur, dan tidak fleksibel
 - Apabila menemukan error atau bug akan sulit melacak kode penyebabnya
+
+## Module 4
+
+Menurut saya alur TDD (Test-Driven Development) sudah membantu saya selama melakukan pemograman dalam aplikasi Springboot ini, sebab saya sudah menetapkan ekspektasi output program dari awal, sehingga saat melakukan pemrograman menjadi lebih terarah.
+
+
+F.I.R.S.T. principle or not. If not, explain things that you need to do the next time you create more tests.
+
+- Fast : sudah terpenuhi karena saya memisahkan tests menjadi unit tests dan functional tests, serta menggunakan stubs contohnya InjectMocks OrderServiceImpl dan Mock orderRepository, sehingga test dapat berjalan dengan cepat
+- Isolated/Independent : sudah terpenuhi karena saya sudah set up objek dummy atau mock sebelum test case, contohnya pada `OrderTest.java` terdapat method BeforeEach
+```java
+    @BeforeEach
+    void setUp() {
+        this.products = new ArrayList<>();
+
+        Product product1 = new Product();
+        product1.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product1.setProductName("Sampo Cap Bambang");
+        product1.setProductQuantity(2);
+
+        Product product2 = new Product();
+        product2.setProductId("a2c62328-4a37-4664-83c7-f32db8620155");
+        product2.setProductName("Sabun Cap Usep");
+        product2.setProductQuantity(1);
+
+        this.products.add(product1);
+        this.products.add(product2);
+    }
+```
+
+- Repeatable: sudah terpenuhi karena test yang saya buat sudah terisolasi dan dapat berjalan berkali-kali dengan hasil yang konsisten. 
+- Self-Validating: sudah terpenuhi karena test saya sudah strict serta menggunakan assertions daripada print secara manual. Namun masih beberapa kekurangan yang dapat diimprove seperti kurangnya pesan dalam tiap assertion dan terlalu banyak assertion dalam satu test method.
+- Thorough/Timely: sudah terpenuhi karena test yang saya buat sudah mencover semua happy & unhappy path yang mencankup semua kemungkinan error.
