@@ -43,7 +43,10 @@ class PaymentServiceImplTest {
         Order order2 = new Order("7f9e15bb-4b15-42f4-aebc-c3af385fb078", products, 1708570000L, "Safira Sudrajat");
         orders.add(order2);
 
+
         // Make payment datas
+        paymentDatas = new ArrayList<>();
+
         Map<String, String> paymentData1 = new HashMap<String, String>();
         paymentData1.put("voucherCode", "ESHOP1234ABC5678");
         paymentDatas.add(paymentData1);
@@ -59,11 +62,25 @@ class PaymentServiceImplTest {
         String id = "75c64e96-d4d7-454b-8ee5-7086efff516c";
         Payment payment = new PaymentVoucherCode(id, orders.get(1), paymentDatas.get(0));
 
-        doReturn(payment).when(paymentRepository).save(payment);
+        doReturn(null).when(paymentRepository).findById(id);
+        doReturn(payment).when(paymentRepository).save(any(Payment.class));
+
         Payment result = paymentService.addPayment(id, orders.get(1), "VOUCHER_CODE", paymentDatas.get(0));
 
-        verify(paymentRepository, times(1)).save(payment);
+        verify(paymentRepository, times(1)).save(any(Payment.class));
         assertEquals(payment.getId(), result.getId());
+    }
+
+    @Test
+    void testInvalidPaymentMethod() {
+        String id = "75c64e96-d4d7-454b-8ee5-7086efff516c";
+        Payment payment = new PaymentVoucherCode(id, orders.get(1), paymentDatas.get(0));
+
+        doReturn(null).when(paymentRepository).findById(id);
+        assertThrows(IllegalArgumentException.class,
+                () -> paymentService.addPayment(id, orders.get(1), "WKWKWKWK", paymentDatas.get(0)));
+
+        verify(paymentRepository, times(0)).save(payment);
     }
 
 
